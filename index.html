@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtoSphere</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Momo+Trust+Display&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&family=Momo+Trust+Display&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--Navigation bar-->
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="#">Home</a>
+                <a href="#">Exhibition</a>
+                <a href="#">About us</a>
+            </div>
+            
+            <div class="nav-center">ArtoSphere</div>
+
+            <div class="nav-right">
+                <a href="#">Favourites</a>
+                <a href="#">Shopping cart</a>
+                <a href="#">Contacts</a>
+            </div>
+        </nav>
+    </header>
+   
+    <div class="slideshow-container">
+        <div class="slide fade ">
+            <img src="img/f1.jpg" class="slide-img">
+            <div class="caption">
+                <p class="date art-glow"></p>
+                <h1 class="title art-glow"></h1>
+                <a class="readmore art-glow">Read more</a>
+            </div>
+        </div>
+
+        <div class="slide fade">
+            <img src="img/secondphoto.jpg" class="slide-img">
+            <div class="caption">
+                <p class="date art-glow"></p>
+                <h1 class="title art-glow"></h1>
+                 <a class="readmore art-glow">Read more</a>
+            </div>
+        </div>
+
+        <div class="slide fade">
+            <img src="img/thirdphoto.jpg" class="slide-img">
+            <div class="caption">
+               <p class="date art-glow"></p>
+               <h1 class="title art-glow"></h1>
+               <a class="readmore art-glow">Read more</a>
+            </div>
+        </div>
+
+        <!--Shigjeta left-right-->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

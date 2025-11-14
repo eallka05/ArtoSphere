@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+body
+{
+    background: #111;
+    color: white;
+}
+
+/* NAVIGATION BAR */
+
+.navbar {
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    background: transparent;   /* transparent kur eshte në foto */
+    border-top: 1px solid rgba(255,255,255,0.3); /*vije e holle siper*/
+    border-bottom: 1px solid rgba(255,255,255,0.3 ); /*vije e holle posht*/
+
+    transition: background 0.3s ease, /* Animacion scroll */
+    
+}
+
+/* NAVBAR pasi skrollon  */
+.navbar.scrolled {
+    background: rgba(0,0,0,0.85);  
+    backdrop-filter: blur(4px);
+}
+.navbar a {
+    text-decoration: none;
+    color: #f5f5f5;
+    margin: 0 15px;
+    font-size: 20px;
+    font-family: "Roboto Slab", serif;   
+}
+
+.nav-center {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    font-family: "Momo Trust Display", sans-serif;
+    font-size:35px;
+}
+ 
+.nav-left, .nav-right {
+    display: flex;
+    gap: 30px;
+}
+
+/* SLIDESHOW */
+.slideshow-container {
+    position: relative;  /* Qe te mund te pozicionojme slidet brenda */
+}
+
+.slide {
+    display: none;
+    position: relative;
+}
+
+.slide-img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 70px;
+    opacity: 0;
+    transition: opacity 1s ease;  
+}
+
+.date {
+    font-size: 22px;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 1s ease;
+    margin-bottom: 10px;
+    font-family: "EB Garamond", serif;
+}
+
+.readmore {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 25px;
+    background:white;
+    color: black;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 1s ease;
+    cursor: pointer;
+}
+
+.readmore:hover{
+    background: black;
+    color: white;
+}
+/* Arrow buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    padding: 16px;
+    font-size: 30px;
+    color: white;
+    user-select: none;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.fade {
+    animation: fadeEffect 1.5s;
+}
+
+@keyframes fadeEffect {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+.navbar a:not(.nav-center) {
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: all 0.25s ease;
+}
+
+/* Efekti kur kalon maus-in siper ketyre linkeve te navbar-it */
+.navbar a:not(.nav-center):hover {
+    background: rgba(255, 255, 255, 0.18);  /* e bardhë transparente */
+    backdrop-filter: blur(6px);             /* glass effect premium */
+    color: #ffb7a5 !important;              /* Gold Rose *//* !important siguron që ngjyra te mos mbivendoset nga CSS të tjera */
+}
+
+.art-glow {
+    opacity: 0;
+    transform: translateY(20px);   
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.45);
+    transition: 
+        opacity 1.2s ease,
+        transform 1.2s ease,
+        filter 1.2s ease,
+        text-shadow 1.4s ease;
+}
+
+.art-glow.show {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 1000; 
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #777;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.dot.active {
+    background: #ffffff;   /* Pike e bardhe kur slide eshte aktiv */
+    transform: scale(1.3); /* Pak me e madhe */
+}
+

@@ -5,6 +5,8 @@ const slideData = [
     {  date: "1931" ,title: "The Persistence of Memory"}
 ];
 
+//Tregon cili slide eshte aktiv
+//Fillon nga i pari
 let slideIndex = 0;
 showSlide(slideIndex);
 
@@ -46,7 +48,7 @@ function showSlide(n) {
     date.textContent = slideData[slideIndex].date;
     title.textContent = slideData[slideIndex].title;
 
-    // Force reflow to restart animation
+    //Truk qe rinis animacionin
     void slides[slideIndex].offsetWidth;
 
     // Timed appearance with .show class
@@ -73,4 +75,71 @@ dots.forEach((dot, index) => {
         slideIndex = index;
         showSlide(slideIndex);
     });
+});
+
+// Mobile hamburger + nav active behavior
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navLinks = Array.from(document.querySelectorAll('.navbar a:not(.nav-center)'));
+    const mobileLinks = mobileMenu ? Array.from(mobileMenu.querySelectorAll('a')) : [];
+
+    function closeMobile() {
+        if (!hamburger || !mobileMenu) return;
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+    function openMobile() {
+        if (!hamburger || !mobileMenu) return;
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener('click', (e) => {
+            const isOpen = hamburger.classList.contains('open');
+            isOpen ? closeMobile() : openMobile();
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.classList.contains('open')) return;
+            if (e.target === hamburger || hamburger.contains(e.target)) return;
+            if (mobileMenu.contains(e.target)) return;
+            closeMobile();
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMobile();
+        });
+
+        // close mobile when a mobile link is clicked (and mark active)
+        mobileLinks.forEach(a => {
+            a.addEventListener('click', () => {
+                navLinks.forEach(x => x.classList.remove('active'));
+                // mark the corresponding desktop link active if present
+                const match = navLinks.find(x => x.getAttribute('href') === a.getAttribute('href'));
+                if (match) match.classList.add('active');
+                a.classList.add('active');
+                closeMobile();
+            });
+        });
+    }
+
+    // mark current page link active on load (works across pages)
+    function setActiveByPath() {
+        const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+        navLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === currentFile);
+        });
+        mobileLinks.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === currentFile);
+        });
+    }
+    setActiveByPath();
 });

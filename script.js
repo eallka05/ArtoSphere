@@ -22,7 +22,18 @@ function showSlide(n) {
     if (n >= slides.length) slideIndex = 0;
     if (n < 0) slideIndex = slides.length - 1;
 
-    for (let s of slides) s.style.display = "none";
+    // Hide all slides and remove animation classes
+    for (let s of slides) {
+        s.style.display = "none";
+        
+        // Remove .show class so animation can replay
+        const t = s.querySelector(".title");
+        const d = s.querySelector(".date");
+        const r = s.querySelector(".readmore");
+        if (t) t.classList.remove("show");
+        if (d) d.classList.remove("show");
+        if (r) r.classList.remove("show");
+    }
 
     slides[slideIndex].style.display = "block";
 
@@ -31,21 +42,24 @@ function showSlide(n) {
     const title = slides[slideIndex].querySelector(".title");
     const readmore = slides[slideIndex].querySelector(".readmore");
 
-
     // Apply text
     date.textContent = slideData[slideIndex].date;
     title.textContent = slideData[slideIndex].title;
 
-    // Timed appearance
-    setTimeout(() => title.style.opacity = 1, 800);   // sec after slide
-    setTimeout(() => date.style.opacity = 1, 1600);    // sec after title
-    setTimeout(() => readmore.style.opacity = 1, 2400); // sec after date
+    // Force reflow to restart animation
+    void slides[slideIndex].offsetWidth;
+
+    // Timed appearance with .show class
+    setTimeout(() => title.classList.add("show"), 800);   // after 0.8s
+    setTimeout(() => date.classList.add("show"), 1600);    // after 1.6s
+    setTimeout(() => readmore.classList.add("show"), 2400); // after 2.4s
 
     // --- Update dots ---
     let dots = document.querySelectorAll(".dot");
     dots.forEach(dot => dot.classList.remove("active"));
     dots[slideIndex].classList.add("active");
 }
+
 // Auto-slide every 10 seconds
 setInterval(() => {
     slideIndex++;
@@ -60,4 +74,3 @@ dots.forEach((dot, index) => {
         showSlide(slideIndex);
     });
 });
-

@@ -121,14 +121,33 @@ body
     cursor: pointer;
     position: absolute;
     top: 50%;
-    padding: 16px;
+    transform: translateY(-50%);
+    padding: 16px 20px;
     font-size: 30px;
     color: white;
     user-select: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
 }
 
-.prev { left: 20px; }
-.next { right: 20px; }
+.prev:hover, .next:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffb7a5;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
 
 .fade {
     animation: fadeEffect 1.5s;
